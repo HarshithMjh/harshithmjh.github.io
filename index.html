@@ -89,26 +89,6 @@
             z-index: 0;
         }
         
-        /* Magic wand cursor trail */
-        .wand-trail {
-            position: fixed;
-            width: 3px;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            box-shadow: 0 0 8px var(--accent-color);
-            animation: fade-out 0.8s forwards;
-        }
-        
-        @keyframes fade-out {
-            to {
-                opacity: 0;
-                transform: scale(0);
-            }
-        }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -204,13 +184,10 @@
             font-weight: 800;
             font-family: 'Cinzel', serif;
             margin: 0;
-            background: linear-gradient(to right, #fff, var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-gold);
             line-height: 1.2;
             letter-spacing: 2px;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
         
         .hero .title {
@@ -1654,34 +1631,8 @@
             if (contributionEl) {
                 animateCounter(contributionEl, 637);
             }
-            
-            // Initialize magical effects
-            initWandTrail();
         });
         
-        // Magic Wand Cursor Trail
-        function initWandTrail() {
-            let lastTime = 0;
-            const throttleDelay = 50; // ms
-            
-            document.addEventListener('mousemove', (e) => {
-                const now = Date.now();
-                if (now - lastTime < throttleDelay) return;
-                lastTime = now;
-                
-                // Only create trail when moving
-                if (Math.random() > 0.7) {
-                    const trail = document.createElement('div');
-                    trail.className = 'wand-trail';
-                    trail.style.left = e.pageX + 'px';
-                    trail.style.top = e.pageY + 'px';
-                    document.body.appendChild(trail);
-                    
-                    setTimeout(() => trail.remove(), 800);
-                }
-            });
-        }
-
         // Print support
         window.addEventListener('beforeprint', () => {
             document.querySelectorAll('section').forEach(section => {
